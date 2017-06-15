@@ -17,7 +17,7 @@ export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
     template: `
         <span [ngClass]="{'ui-autocomplete ui-widget':true,'ui-autocomplete-dd':dropdown,'ui-autocomplete-multiple':multiple}" [ngStyle]="style" [class]="styleClass">
             <input *ngIf="!multiple" #in pInputText type="text" [ngStyle]="inputStyle" [class]="inputStyleClass" autocomplete="off"
-            [value]="value ? (field ? resolveFieldData(value)||value : value) : null" (input)="onInput($event)" (keydown)="onKeydown($event)" (focus)="onFocus()" (blur)="onInputBlur()"
+            [value]="value ? value : null" (input)="onInput($event)" (keydown)="onKeydown($event)" (focus)="onFocus()" (blur)="onInputBlur()"
             [attr.placeholder]="placeholder" [attr.size]="size" [attr.maxlength]="maxlength" [attr.tabindex]="tabindex" [readonly]="readonly" [disabled]="disabled"
             [ngClass]="{'ui-autocomplete-input':true,'ui-autocomplete-dd-input':dropdown}"
             ><ul *ngIf="multiple" class="ui-autocomplete-multiple-container ui-widget ui-inputtext ui-state-default ui-corner-all" [ngClass]="{'ui-state-disabled':disabled,'ui-state-focus':focus}" (click)="multiIn.focus()">
@@ -218,7 +218,7 @@ export class AutoComplete implements AfterViewInit,DoCheck,AfterViewChecked,Cont
     onInput(event) {
         let value = event.target.value;
         if(!this.multiple) {
-            this.value = value;
+			this.value = this.resolveFieldData(value);
             this.onModelChange(value);
         }
         
@@ -264,7 +264,6 @@ export class AutoComplete implements AfterViewInit,DoCheck,AfterViewChecked,Cont
             }
         }
         else {
-        	console.log('changung input value', this.input.value);
             this.input.value = this.field ? this.resolveFieldData(option): option;
             this.value = option;
             this.onModelChange(this.value);
