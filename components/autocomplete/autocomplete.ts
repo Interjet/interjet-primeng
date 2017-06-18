@@ -218,7 +218,7 @@ export class AutoComplete implements AfterViewInit,DoCheck,AfterViewChecked,Cont
     onInput(event) {
         let value = event.target.value;
         if(!this.multiple) {
-			this.value = this.resolveFieldData(value);
+			this.value = !!this.resolveFieldData(value) ? this.resolveFieldData(value) : value;
             this.onModelChange(value);
         }
         
