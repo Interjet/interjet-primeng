@@ -268,8 +268,8 @@ export class AutoComplete implements AfterViewInit,DoCheck,AfterViewChecked,Cont
             }
         }
         else {
-            this.input.value = this.field ? this.resolveFieldData(option): option;
-            this.value = option;
+            // this.input.value = this.field ? this.resolveFieldData(option): option;
+            // this.value = option;
             this.onModelChange(this.value);
         }
         
