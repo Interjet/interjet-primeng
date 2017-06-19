@@ -85,6 +85,8 @@ export class AutoComplete implements AfterViewInit,DoCheck,AfterViewChecked,Cont
     @Output() onDropdownClick: EventEmitter<any> = new EventEmitter();
 
 	@Output() onBlur: EventEmitter<any> = new EventEmitter();
+
+	@Output() updateModel: EventEmitter<any> = new EventEmitter();
     
     @Input() field: string;
     
@@ -217,6 +219,7 @@ export class AutoComplete implements AfterViewInit,DoCheck,AfterViewChecked,Cont
 
     onInput(event) {
         let value = event.target.value;
+        this.updateModel.emit(event);
         if(!this.multiple) {
         	// The following two lines create a bug with erasing values or typing in the middle of the word
 			// this.value = !!this.resolveFieldData(value) ? this.resolveFieldData(value) : value;
