@@ -135,8 +135,12 @@ export class FileUpload implements OnInit,AfterContentInit {
     }
     
     onChooseClick(event, fileInput) {
-        fileInput.value = null;
-        fileInput.click();
+		if (event.isTrusted) {
+			fileInput.value = null;
+			fileInput.click();
+		} else {
+			event.preventDefault();
+		}
     }
     
     onFileSelect(event) {
