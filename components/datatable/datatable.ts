@@ -393,6 +393,8 @@ export class DataTable implements AfterViewChecked,AfterViewInit,AfterContentIni
 
     @Input() filterDelay: number = 300;
 
+    @Input() autoload: boolean;
+
     @Input() lazy: boolean;
 
     @Output() onLazyLoad: EventEmitter<any> = new EventEmitter();
@@ -579,7 +581,7 @@ export class DataTable implements AfterViewChecked,AfterViewInit,AfterContentIni
     }
 
     ngOnInit() {
-        if(this.lazy) {
+        if(this.lazy && this.autoload) {
             this.onLazyLoad.emit(this.createLazyLoadMetadata());
         }
     }
