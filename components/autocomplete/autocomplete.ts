@@ -281,7 +281,7 @@ export class AutoComplete implements AfterViewInit,DoCheck,AfterViewChecked,Cont
     }
     
     show() {
-        if(!this.panelVisible && (this.focus||this.dropdownFocus)) {
+        if(!this.panelVisible && (this.focus||this.dropdownFocus) && (!!this.suggestions && !!this.suggestions.length)) {
             this.panelVisible = true;
             this.panel.style.zIndex = ++DomHandler.zindex;
             this.domHandler.fadeIn(this.panel, 200);
